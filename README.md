@@ -1,16 +1,47 @@
-# flutter_ilk_proje
+# Flutter Kişisel Çalışma
 
-A new Flutter project.
+Udemy kursu ile Flutter öğrenme sürecim.
 
-## Getting Started
+## Öğrenilen Konular
 
-This project is a starting point for a Flutter application.
+### UI Layout (Şubat 2026)
+- Column ve Row widget'ları
+- Container kullanımı
+- Alignment ve spacing (MainAxisAlignment, CrossAxisAlignment)
+- FloatingActionButton
+- Scaffold yapısı
+- Material Design temelleri
 
-A few resources to get you started if this is your first Flutter project:
+## Projeler
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### flutter_ilk_proje
+Temel layout çalışması - expandedCluster widget'ları ile pratik
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+---
+
+*Not: Bu repo kişisel öğrenme sürecimi takip etmek için oluşturuldu.*
+
+---
+
+# Flutter Personal Study
+
+Learning Flutter through Udemy course.
+
+## Topics Learned
+
+### UI Layout (February 2026)
+- Column and Row widgets
+- Container usage
+- Alignment and spacing (MainAxisAlignment, CrossAxisAlignment)
+- FloatingActionButton
+- Scaffold structure
+- Material Design basics
+
+## Projects
+
+### flutter_ilk_proje
+Basic layout practice - working with expandedCluster widgets
+
+---
+
+*Note: This repository was created to track my personal learning journey.*
