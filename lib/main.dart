@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_ilk_proje/image_widgets.dart';
+import 'package:flutter_ilk_proje/my_counter_page.dart';
 void main() {
 debugPrint("main methodu çalıştı");
 
@@ -14,42 +15,18 @@ class MyApp extends StatelessWidget {
     
 debugPrint("myapp çalıştı");
     return  MaterialApp(
-      title:"My CounterApp",
       theme:ThemeData(
-      primarySwatch: Colors.pink,
-
+        textTheme: TextTheme(headlineMedium: TextStyle(color: Colors.amber)),//bunu neden almıyo da
+      colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.deepPurple)//bunu alıyor?! yarım
       ),
-      home: MyHomePage(),
-    );
-  }
-}
-
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    
-debugPrint("myHomePage çalıştı");
-    return Container(
-      child:Scaffold(
+      home: Scaffold(
         appBar: AppBar(
-          title: Text("BURA BENİM AppBARIM"),
-       ),
-       body:Center(
-        child:Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text("Butona basılma miktarı", style: TextStyle(fontSize: 32)),
-            Text("0",style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold)),
-          ],
-        ),
-       ),
-       floatingActionButton: FloatingActionButton(onPressed: (){
-        
-debugPrint("buton çalıştı");
-       },child: Icon(Icons.add_a_photo),),
+          title: Text("Image Örnekleri"),
       ),
-    );
+        body:ImageOrnekleri(),
+      ),
+      );
   }
 }
+
+
