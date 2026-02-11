@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ilk_proje/dropdown_button_kullanimi.dart';
 import 'package:flutter_ilk_proje/image_widgets.dart';
 import 'package:flutter_ilk_proje/my_counter_page.dart';
+import 'package:flutter_ilk_proje/popupmenu_kullanimi.dart';
+import 'package:flutter_ilk_proje/temel_buton_turleri.dart';
 
 void main() {
   runApp(MyApp());
@@ -12,10 +15,22 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(primaryColor: Colors.green, primarySwatch: Colors.brown),
+      theme: ThemeData(
+        outlinedButtonTheme: OutlinedButtonThemeData(
+          style: OutlinedButton.styleFrom(),
+        ),
+        textButtonTheme: TextButtonThemeData(
+          style: ButtonStyle(
+            backgroundColor: WidgetStatePropertyAll(Colors.tealAccent),
+          ),
+        ),
+        textTheme: TextTheme(
+          headlineMedium: TextStyle(color: Colors.deepPurple),
+        ),
+      ),
       home: Scaffold(
         appBar: AppBar(
-          title: Text("Image Örnekleri"),
+          title: Text("Butonlar"),
           backgroundColor: Colors.amberAccent,
           centerTitle: true,
           shape: const RoundedRectangleBorder(
@@ -24,8 +39,9 @@ class MyApp extends StatelessWidget {
               bottomLeft: Radius.circular(25),
             ),
           ),
+          actions: [PopupmenuKullanimi()],
         ),
-        body: ImageOrnekleri(),
+        body: PopupmenuKullanimi(),
       ),
     );
   }
