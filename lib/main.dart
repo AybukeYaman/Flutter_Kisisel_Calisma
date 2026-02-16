@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ilk_proje/dropdown_button_kullanimi.dart';
-import 'package:flutter_ilk_proje/image_widgets.dart';
-import 'package:flutter_ilk_proje/my_counter_page.dart';
-import 'package:flutter_ilk_proje/popupmenu_kullanimi.dart';
-import 'package:flutter_ilk_proje/temel_buton_turleri.dart';
+import 'package:flutter_ilk_proje/listview_kullanimi.dart';
 
 void main() {
   runApp(MyApp());
@@ -39,9 +35,9 @@ class MyApp extends StatelessWidget {
               bottomLeft: Radius.circular(25),
             ),
           ),
-          actions: [PopupmenuKullanimi()],
+          //  actions: [PopupmenuKullanimi()],
         ),
-        body: PopupmenuKullanimi(),
+        body: ListviewKullanimi(),
       ),
     );
   }
