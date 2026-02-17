@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:flutter_ilk_proje/ListciewLayoutProblemleri.dart';
 import 'package:flutter_ilk_proje/listview_kullanimi.dart';
 
 void main() {
@@ -54,7 +55,7 @@ class MyApp extends StatelessWidget {
           ),
           //  actions: [PopupmenuKullanimi()],
         ),
-        body: ListviewKullanimi(),
+        body: Listciewlayoutproblemleri(),
       ),
       builder: EasyLoading.init(),
     );
