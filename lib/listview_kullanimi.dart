@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 class ListviewKullanimi extends StatefulWidget {
   const ListviewKullanimi({super.key});
@@ -20,8 +22,9 @@ class _ListviewKullanimiState extends State<ListviewKullanimi> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Öğrenci Listesi")),
-      body: ListView.custom(childrenDelegate: childrenDelegate)....
+      appBar: AppBar(title: const Text("Öğrenci Listesi")),
+      body:
+          listViewBuilder(), // Burada hangi listeyi görmek istiyorsan onu çağırabilirsin.
     );
   }
 
@@ -30,7 +33,7 @@ class _ListviewKullanimiState extends State<ListviewKullanimi> {
       children: tumOgrenciler
           .map(
             (Ogrenci ogr) => ListTile(
-              title: Text(ogr.isim),
+              title: Text(ogr.sim),
               subtitle: Text(ogr.soyisim),
               leading: CircleAvatar(child: Text(ogr.id.toString())),
             ),
@@ -38,44 +41,80 @@ class _ListviewKullanimiState extends State<ListviewKullanimi> {
           .toList(),
     );
   }
-}
 
-
-Widget _ogrenciListesiniOlustur() {
-    return ListView.separated(
+  // Dışarıda kalan builder yapısını bir metod haline getirdim:
+  ListView listViewBuilder() {
+    return ListView.builder(
       itemCount: tumOgrenciler.length,
       itemBuilder: (BuildContext context, int index) {
         var oAnkiOgrenci = tumOgrenciler[index];
 
         return Card(
-          color: index % 2 == 0
-              ? Colors.pink.shade200
-              : Colors.green.shade200,
+          color: index % 2 == 0 ? Colors.pink.shade200 : Colors.green.shade200,
           child: ListTile(
             onTap: () {
-              print("eleman tıklandı: ${index + 1}");
+              if (index % 2 == 0) {
+                EasyLoading.instance.backgroundColor = Colors.red;
+                EasyLoading.instance.textColor = Colors.pink;
+              } else {
+                EasyLoading.instance.backgroundColor = Colors.blue;
+              }
+              EasyLoading.showToast(
+                "Eleman tıklandı",
+                duration: const Duration(seconds: 3),
+                dismissOnTap: true,
+                toastPosition: EasyLoadingToastPosition.bottom,
+              );
             },
-            title: Text(oAnkiOgrenci.isim),
+            onLongPress: () {
+              _alertDialogIslamleri(context, oAnkiOgrenci);
+            },
+            title: Text(oAnkiOgrenci.sim),
             subtitle: Text(oAnkiOgrenci.soyisim),
-            leading: CircleAvatar(
-              child: Text(oAnkiOgrenci.id.toString()),
-            ),
+            leading: CircleAvatar(child: Text(oAnkiOgrenci.id.toString())),
           ),
         );
       },
-      separatorBuilder: (context, index) {
-        // Her 4 elemanda bir çizgi çeker
-        if ((index + 1) % 4 == 0) {
-          return const Divider(thickness: 2, color: Colors.black);
-        }
-        return const SizedBox();
+    );
+  }
+
+  void _alertDialogIslamleri(BuildContext myContext, Ogrenci secilenOgr) {
+    // İOS İÇİN showCupertinoDialog(context: context, builder: builder)
+    showDialog(
+      context: myContext,
+      builder: (context) {
+        return AlertDialog(
+          title: Text(secilenOgr.toString()),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: [
+                Text("Aybüke harika biri" * 200),
+                Text("Aybüke harika biri" * 200),
+                Text("Aybüke harika biri" * 200),
+              ],
+            ),
+          ),
+          actions: [
+            OverflowBar(
+              children: [
+                TextButton(onPressed: () {}, child: Text("kapat")),
+                TextButton(onPressed: () {}, child: Text("tamam")),
+              ],
+            ),
+          ],
+        );
       },
     );
   }
+}
+
 class Ogrenci {
   final int id;
-  final String isim;
+  final String sim;
   final String soyisim;
 
-  Ogrenci(this.id, this.isim, this.soyisim);
+  Ogrenci(this.id, this.sim, this.soyisim);
+
+  @override
+  String toString() => "İsim : ${sim} Soyisim: ${soyisim} ID : ${id}";
 }
