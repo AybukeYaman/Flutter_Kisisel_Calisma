@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_ilk_proje/ListciewLayoutProblemleri.dart';
-import 'package:flutter_ilk_proje/listview_kullanimi.dart';
+import 'package:flutter_ilk_proje/lessons/section_18/custom_scroll_sliver.dart';
+import 'package:flutter_ilk_proje/lessons/section_18/listview_kullanimi.dart';
 
 void main() {
   runApp(MyApp());
@@ -41,22 +42,9 @@ class MyApp extends StatelessWidget {
         textTheme: TextTheme(
           headlineMedium: TextStyle(color: Colors.deepPurple),
         ),
+        brightness: Brightness.dark,
       ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text("Butonlar"),
-          backgroundColor: Colors.amberAccent,
-          centerTitle: true,
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(
-              bottomRight: Radius.circular(25),
-              bottomLeft: Radius.circular(25),
-            ),
-          ),
-          //  actions: [PopupmenuKullanimi()],
-        ),
-        body: Listciewlayoutproblemleri(),
-      ),
+      home: Scaffold(body: CollapseToolbarOrnek()),
       builder: EasyLoading.init(),
     );
   }

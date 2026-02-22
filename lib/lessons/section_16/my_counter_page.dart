@@ -8,7 +8,6 @@ class MyCounterPage extends StatefulWidget {
 }
 
 class _MyCounterPageState extends State<MyCounterPage> {
-  
   int _sayac = 0;
 
   @override
