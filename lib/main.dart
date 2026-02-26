@@ -1,27 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:flutter_ilk_proje/ListciewLayoutProblemleri.dart';
-import 'package:flutter_ilk_proje/lessons/section_18/custom_scroll_sliver.dart';
-import 'package:flutter_ilk_proje/lessons/section_18/listview_kullanimi.dart';
+import 'package:flutter_ilk_proje/lessons/section_19/red_page.dart';
 
 void main() {
   runApp(MyApp());
-  configLoading();
-}
-
-void configLoading() {
-  EasyLoading.instance
-    ..displayDuration = const Duration(milliseconds: 2000)
-    ..indicatorType = EasyLoadingIndicatorType.fadingCircle
-    ..loadingStyle = EasyLoadingStyle.custom
-    ..indicatorSize = 45.0
-    ..radius = 10.0
-    ..progressColor = Colors.yellow
-    ..backgroundColor = Colors.green
-    ..indicatorColor = Colors.yellow
-    ..textColor = Colors.yellow
-    ..userInteractions = true
-    ..dismissOnTap = true;
 }
 
 class MyApp extends StatelessWidget {
@@ -29,23 +11,58 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        outlinedButtonTheme: OutlinedButtonThemeData(
-          style: OutlinedButton.styleFrom(),
+    return MaterialApp(title: "Material App", home: AnaSayfa());
+  }
+}
+
+class AnaSayfa extends StatelessWidget {
+  const AnaSayfa({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Navigation İslemleri")),
+      body: Center(
+        child: Column(
+          children: [
+            ElevatedButton(
+              onPressed: () async {
+                int? _gelenSayi = await Navigator.push<int>(
+                  context,
+                  CupertinoPageRoute(builder: (redContext) => RedPage()),
+                );
+                //tanim ile olan kullanimi
+                print("Ana sayfadaki Sayi $_gelenSayi");
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.red.shade300,
+              ),
+              child: Text("Kırmızı Sayfaya Gir IOS"),
+            ),
+
+            ElevatedButton(
+              onPressed: () {
+                //both are the same thing
+                //  Navigator.push(context, route);
+                //Buradaki context build in içindeki context
+                Navigator.of(context)
+                    .push<int>(
+                      MaterialPageRoute(
+                        builder: (redContext) => RedPage(),
+                        //buradaki context RedPage için eklenen context
+                      ),
+                    )
+                    .then((int? value) => debugPrint("Gelen sayi $value"));
+                //then ile kullanimi
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.red.shade600,
+              ),
+              child: Text("Kırmızı Sayfaya Gir ANDROİD"),
+            ),
+          ],
         ),
-        textButtonTheme: TextButtonThemeData(
-          style: ButtonStyle(
-            backgroundColor: WidgetStatePropertyAll(Colors.tealAccent),
-          ),
-        ),
-        textTheme: TextTheme(
-          headlineMedium: TextStyle(color: Colors.deepPurple),
-        ),
-        brightness: Brightness.dark,
       ),
-      home: Scaffold(body: CollapseToolbarOrnek()),
-      builder: EasyLoading.init(),
     );
   }
 }
