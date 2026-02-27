@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_ilk_proje/lessons/section_19/red_page.dart';
+import 'package:flutter_ilk_proje/lessons/section_19/yellow_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -11,7 +12,22 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(title: "Material App", home: AnaSayfa());
+    return MaterialApp(
+      title: "Material App",
+      home: AnaSayfa(),
+      //rota tanımı yapıldı
+      routes: {
+        "/RedPage": (context) => RedPage(),
+        // "/": (context) => AnaSayfa(),
+        "/YellowPage": (context) => YellowPage(),
+      },
+      onUnknownRoute: (settings) => MaterialPageRoute(
+        builder: (context) => Scaffold(
+          appBar: AppBar(title: Text("Error")),
+          body: Center(child: Text("404")),
+        ),
+      ),
+    );
   }
 }
 
@@ -58,7 +74,17 @@ class AnaSayfa extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.red.shade600,
               ),
-              child: Text("Kırmızı Sayfaya Gir ANDROİD"),
+              child: Text("Maybe pop Kullanımı"),
+            ),
+
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, "/RedPage2");
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blue.shade300,
+              ),
+              child: Text("Pushnamed kullanimi"),
             ),
           ],
         ),
